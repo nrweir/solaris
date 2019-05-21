@@ -6,6 +6,7 @@ import rasterio
 
 # define the current directory as `data_dir`
 data_dir = os.path.abspath(os.path.dirname(__file__))
+zoo_dir = os.path.join(data_dir, 'zoo')
 
 
 def load_geojson(gj_fname):

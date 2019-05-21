@@ -1,5 +1,6 @@
+import os
 import yaml
-from ..nets import zoo
+from ..data import zoo_dir
 
 
 def parse(path):
@@ -19,9 +20,6 @@ def parse(path):
     with open(path, 'r') as f:
         config = yaml.safe_load(f)
         f.close()
-    if config['model_name'] not in zoo.models:
-        raise ValueError('{} is not a valid model name.'.format(
-            config['model_name']))
     if not config['train'] and not config['infer']:
         raise ValueError('"train", "infer", or both must be true.')
     if config['train'] and config['data']['train_im_src'] is None:
@@ -33,3 +31,18 @@ def parse(path):
     # TODO: IMPLEMENT UPDATING VALUES BASED ON EMPTY ELEMENTS HERE!
 
     return config
+
+
+def _parse_zoo():
+    """Get the filenames and URLs for all of the models in the zoo."""
+    with open(os.path.join(zoo_dir, 'model_reference.yml'), 'r') as f:
+        zoo_metadict = yaml.safe_load(f)
+        f.close()
+
+    model_paths = zoo_metadict['model_paths']
+    model_urls = zoo_metadict['model_urls']
+
+    for model_name, model_path in model_paths.items():
+        model_paths[model_name] = os.path.join(zoo_dir, model_path)
+
+    return model_paths, model_urls

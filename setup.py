@@ -7,7 +7,7 @@ inst_reqs = ['shapely>=1.6.4',
              'opencv-python==4.1.0.25',
              'numpy>=1.15.4',
              'tqdm>=4.28.1',
-             'GDAL>=2.4.0',
+             'GDAL==2.4.0',
              'rtree>=0.8.3',
              'networkx>=2.2',
              'rasterio>=1.0.18',
@@ -18,7 +18,8 @@ inst_reqs = ['shapely>=1.6.4',
              'affine>=2.2.2',
              'albumentations>=0.2.3',
              'rio-tiler>=1.2.7',
-             'pyyaml>=5.1'
+             'pyyaml>=5.1',
+             'requests>=2.22.0'
              ]
 
 version = '0.0.1'
