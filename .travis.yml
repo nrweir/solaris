@@ -43,7 +43,7 @@ install:
   - conda info -a
   - echo "Python $CONDA_PYTHON running on $TRAVIS_OS_NAME"
 
-  - sed -i -E 's/(python=)(.*)/\1'$CONDA_PYTHON'/' ./environment.yml
+  - sed -i -E 's/(python=)(.*)/\1"$CONDA_PYTHON"/' ./environment.yml
   - conda env create --name solaris python=$CONDA_PYTHON --file=./environment.yml
   - conda activate solaris
   - python --version
