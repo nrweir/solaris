@@ -58,7 +58,7 @@ install:
 
   - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
       sed -i -E 's/(python=)(.*)/\1'$CONDA_PYTHON'/' ./environment.yml;
-    elif [[ "$TRAVIS_OS_NAME" == "osx"]]; then
+    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       sed -i '' -E 's/(python=)(.*)/\1'$CONDA_PYTHON'/' ./environment.yml;
     fi
   - conda env create --name solaris --file=./environment.yml
