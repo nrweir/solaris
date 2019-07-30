@@ -1,13 +1,23 @@
 language: shell
 
-env:
-  - CONDA_PYTHON=3.6
-  - CONDA_PYTHON=3.7
-
-os:
-  - linux
-  - windows
-  - osx
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      language: python
+      env: CONDA_PYTHON=3.6
+    - os: linux
+      dist: xenial
+      language: python
+      env: CONDA_PYTHON=3.7
+    - os: osx
+      env: CONDA_PYTHON=3.6
+    - os: osx
+      env: CONDA_PYTHON=3.7
+    - os: windows
+      env: CONDA_PYTHON=3.6
+    - os: windows
+      env: CONDA_PYTHON=3.7
 
 before_install:
   # set conda path info
