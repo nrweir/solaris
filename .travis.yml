@@ -64,7 +64,11 @@ install:
   - conda env create --name solaris --file=./environment.yml
   - conda activate solaris
   - python --version
-  - pip install -q -e .[test] -v -v -v
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then
+      pip install -q -e .[test] -v -v -v;
+    elif [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+      C:\Users\travis\.conda\envs\solaris\pip install .[test] -v -v -v;
+    fi
 
 script:
   - python -m pytest --cov=./
