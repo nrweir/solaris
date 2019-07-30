@@ -64,7 +64,7 @@ install:
   - conda env create --name solaris --file=./environment.yml
   - conda activate solaris
   - python --version
-  - pip install -q -e .[test]
+  - pip install -q -e .[test] -v -v -v
 
 script:
   - python -m pytest --cov=./
