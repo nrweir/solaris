@@ -1,9 +1,8 @@
 """PyTorch Callbacks."""
-
+import torch
 import os
 import numpy as np
 from .metrics import metric_dict
-import torch
 
 
 class TorchEarlyStopping(object):
