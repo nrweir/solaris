@@ -38,4 +38,4 @@ jobs:
         sudo pip install -q -e .[test]  # install solaris
         sudo conda install pytest=4.6.2 -c conda-forge  # install pytest
         sudo pip install codecov pytest-cov  # install codecov support
-        sudo python -m pytest --cov=./ && codecov  # run pytests, then codecov
+        python -m pytest --cov=./ && codecov  # run pytests, then codecov
