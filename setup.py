@@ -46,9 +46,8 @@ gdal_output = [None] * 4
 gdalversion = None
 
 try:
-    gdal_version = subprocess.check_output(
-        ['gdal-config', '--version']).decode('utf')
-    gdal_config = os.environ.get('GDAL_CONFIG', 'gdal-config')
+    import gdal
+    print(gdal.VersionInfo())
 
 except Exception as err:
     print(err)
