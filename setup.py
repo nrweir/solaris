@@ -51,6 +51,7 @@ try:
     gdal_config = os.environ.get('GDAL_CONFIG', 'gdal-config')
 
 except Exception:
+    print(Exception)
     sys.exit("GDAL must be installed to use `solaris`. See the documentation "
              "for more info. We recommend installing GDAL within a conda "
              "environment first, then installing solaris there.")
