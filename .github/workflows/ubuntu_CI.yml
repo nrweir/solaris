@@ -35,7 +35,7 @@ jobs:
         conda list -n solaris
         conda activate solaris
         python --version    
-        sudo pip install -q -e .[test]  # install solaris
+        sudo pip install -q -e .[test] -vvv  # install solaris
         sudo conda install pytest=4.6.2 -c conda-forge  # install pytest
         sudo pip install codecov pytest-cov  # install codecov support
         python -m pytest --cov=./ && codecov  # run pytests, then codecov
