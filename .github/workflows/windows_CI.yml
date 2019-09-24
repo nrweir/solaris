@@ -1,0 +1,38 @@
+name: windows-miniconda-build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        os: [ubuntu-16.04, windows-latest, macOS-latest]
+        python-version: [3.6, 3.7]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install miniconda
+      run: |
+        wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.sh -O C:\tmp\miniconda.sh && \
+        start /wait "" C:\tmp\miniconda.exe /D=%UserProfile%\Miniconda3
+        del /f C:\tmp\miniconda.sh
+        conda init
+        conda clean -tipsy
+        conda activate
+        conda config --set always_yes yes
+    - name: Install dependencies + solaris then run tests
+      run: |
+        CODECOV_TOKEN="fb919376-3e20-41a9-8612-051c1e7a05da"  # change this for the CosmiQ version
+        get-content ./environment.yml | %{$_ -replace "s/(python=)(.*)/\1","${{ matrix.python-version }}"}  # update python version in environment.yml
+        conda env create -n solaris -f environment.yml  # install dependencies
+        conda list -n solaris
+        conda activate solaris
+        python --version
+        pip install -e .[test] -vvv  # install solaris
+        conda install pytest=4.6.2 -c conda-forge  # install pytest
+        pip install codecov pytest-cov  # install codecov support
+        python -m pytest --cov=./ && codecov  # run pytests, then codecov

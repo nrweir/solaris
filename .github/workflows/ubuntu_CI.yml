@@ -9,14 +9,18 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        os: [ubuntu-16.04, windows-latest, macOS-latest]
+        os: [ubuntu-16.04, macOS-latest]
         python-version: [3.6, 3.7]
 
     steps:
     - uses: actions/checkout@v1
-    
+
     - name: Install miniconda
       run: |
+        if [${{ matrix.os }} == "macOS-latest" ]; then
+           sudo wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh;
+           else sudo wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh;
+        fi
         sudo wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh && \
           sudo /bin/bash ~/miniconda.sh -b -p /opt/conda
           sudo rm ~/miniconda.sh
@@ -36,7 +40,7 @@ jobs:
         sudo conda env create -p /opt/conda/envs/solaris -f environment.yml  # install dependencies
         conda list -n solaris
         conda activate solaris
-        python --version    
+        python --version
         sudo /opt/conda/envs/solaris/bin/pip install -e .[test] -vvv  # install solaris
         sudo conda install pytest=4.6.2 -c conda-forge  # install pytest
         sudo /opt/conda/envs/solaris/bin/pip install codecov pytest-cov  # install codecov support
