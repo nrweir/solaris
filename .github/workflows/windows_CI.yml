@@ -20,6 +20,7 @@ jobs:
         curl -o $HOME/tmp/miniconda.exe https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.exe
       shell: bash
     - name: Install miniconda
+      run: |
         %HOME%/tmp/miniconda.exe /S /D=%HOME%/Miniconda3
         conda init
         conda clean -tipsy
