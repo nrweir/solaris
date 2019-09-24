@@ -24,7 +24,7 @@ jobs:
         sudo /bin/bash ~/miniconda.sh -b -p /opt/conda
         sudo rm ~/miniconda.sh
         sudo /opt/conda/bin/conda clean -tipsy
-        sudo mkdir /etc/profile.d/
+        sudo mkdir -p /etc/profile.d/
         sudo ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
         sudo echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
         source /opt/conda/etc/profile.d/conda.sh
