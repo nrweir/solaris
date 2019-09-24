@@ -9,7 +9,6 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        os: [ubuntu-16.04, windows-latest, macOS-latest]
         python-version: [3.6, 3.7]
 
     steps:
@@ -17,7 +16,7 @@ jobs:
 
     - name: Install miniconda
       run: |
-        wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.sh -O C:\tmp\miniconda.sh && \
+        Invoke-WebRequest -OutFile C:\tmp\miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.exe
         start /wait "" C:\tmp\miniconda.exe /D=%UserProfile%\Miniconda3
         del /f C:\tmp\miniconda.sh
         conda init
