@@ -16,7 +16,7 @@ jobs:
 
     - name: Install miniconda
       run: |
-        Invoke-WebRequest -OutFile C:\tmp\miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.exe
+        pwsh Invoke-WebRequest -OutFile C:\tmp\miniconda.exe https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.exe
         start /wait "" C:\tmp\miniconda.exe /D=%UserProfile%\Miniconda3
         del /f C:\tmp\miniconda.sh
         conda init
