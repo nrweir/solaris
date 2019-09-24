@@ -14,16 +14,17 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Install miniconda
+    - name: Download miniconda
       run: |
         mkdir $HOME/tmp
         curl -o $HOME/tmp/miniconda.exe https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Windows-x86_64.exe
-        $HOME/tmp/miniconda.exe /S /D=$HOME/Miniconda3
+      shell: bash
+    - name: Install miniconda
+        %HOME%/tmp/miniconda.exe /S /D=%HOME%/Miniconda3
         conda init
         conda clean -tipsy
         conda activate
         conda config --set always_yes yes
-      shell: bash
     - name: Install dependencies + solaris then run tests
       run: |
         CODECOV_TOKEN="fb919376-3e20-41a9-8612-051c1e7a05da"  # change this for the CosmiQ version
