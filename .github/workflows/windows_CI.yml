@@ -21,6 +21,7 @@ jobs:
       shell: bash
     - name: Install miniconda
       run: |
+        echo "%HOME%/tmp/miniconda.exe"
         %HOME%/tmp/miniconda.exe /S /D=%HOME%/Miniconda3
         conda init
         conda clean -tipsy

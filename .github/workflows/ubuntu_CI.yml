@@ -35,7 +35,10 @@ jobs:
     - name: Install dependencies + solaris then run tests
       run: |
         CODECOV_TOKEN="fb919376-3e20-41a9-8612-051c1e7a05da"  # change this for the CosmiQ version
-        sed -i -E "s/(python=)(.*)/\1${{ matrix.python-version }}/" ./environment.yml  # update python version in environment.yml
+        if [ "${{ matrix.os }}" == "macOS-latest" ]; then
+           sed -i -E 's/\(python=\)\(.*\)/\1'${{ matrix.python-version }}'/' ./environment.yml;
+           else sed -i -E 's/(python=)(.*)/\1'${{ matrix.python-version }}'/' ./environment.yml;  # update python version in environment.yml
+        fi
         source /opt/conda/etc/profile.d/conda.sh
         sudo conda env create -p /opt/conda/envs/solaris -f environment.yml  # install dependencies
         conda list -n solaris
