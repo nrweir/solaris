@@ -249,6 +249,12 @@ encoder_params = {
         'last_upsample': 64,
         'init_op': partial(resnet34, in_channels=4)
         },
+    'resnet34_3ch': {
+        'filters': [64, 64, 128, 256, 512],
+        'decoder_filters': [64, 128, 256, 512],
+        'last_upsample': 64,
+        'init_op': partial(resnet34, in_channels=3)
+        },
     'densenet161':
         {'filters': [96, 384, 768, 2112, 2208],
          'decoder_filters': [64, 128, 256, 256],
@@ -513,7 +519,7 @@ class SelimSef_SpaceNet4_ResNet34UNet(EncoderDecoder):
 class SN5_Baseline_ResNet34UNet(EncoderDecoder):
     def __init__(self):
         self.first_layer_stride_two = True
-        super().__init__(8, 3, 'resnet34')
+        super().__init__(8, 3, 'resnet34_3ch')
 
     def get_encoder(self, encoder, layer):
         if layer == 0:
