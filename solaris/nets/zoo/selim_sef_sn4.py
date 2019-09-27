@@ -348,6 +348,7 @@ class EncoderDecoder(AbstractModel):
             x = self.last_upsample(x)
 
         f = self.final(x)
+        f = torch.sigmoid(f)
 
         return f
 
@@ -361,8 +362,7 @@ class EncoderDecoder(AbstractModel):
 
     def make_final_classifier(self, in_filters, num_classes):
         return nn.Sequential(
-            nn.Conv2d(in_filters, num_classes, 1, padding=0),
-            torch.sigmoid()
+            nn.Conv2d(in_filters, num_classes, 1, padding=0)
         )
 
     def get_encoder(self, encoder, layer):
