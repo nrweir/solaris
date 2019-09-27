@@ -510,6 +510,29 @@ class SelimSef_SpaceNet4_ResNet34UNet(EncoderDecoder):
             return encoder.layer4
 
 
+class SN5_Baseline_ResNet34UNet(EncoderDecoder):
+    def __init__(self):
+        self.first_layer_stride_two = True
+        super().__init__(8, 3, 'resnet34')
+
+    def get_encoder(self, encoder, layer):
+        if layer == 0:
+            return nn.Sequential(
+                encoder.conv1,
+                encoder.bn1,
+                encoder.relu)
+        elif layer == 1:
+            return nn.Sequential(
+                encoder.maxpool,
+                encoder.layer1)
+        elif layer == 2:
+            return encoder.layer2
+        elif layer == 3:
+            return encoder.layer3
+        elif layer == 4:
+            return encoder.layer4
+
+
 class SelimSef_SpaceNet4_DenseNet121Unet(EncoderDecoder):
     def __init__(self):
         self.first_layer_stride_two = True
