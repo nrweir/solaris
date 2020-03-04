@@ -60,8 +60,7 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 if on_rtd:
     inst_reqs = ['sphinx_bootstrap_theme']
 else:
-    inst_reqs = ['pip>=19.0.3',
-                 'affine>=2.3.0',
+    inst_reqs = ['affine>=2.3.0',
                  'albumentations==0.4.3',
                  'fiona>=1.8.13',
                  'gdal>=3.0.2',
@@ -72,7 +71,7 @@ else:
                  'opencv-python>=4.1.0.25',
                  'pandas>=0.25.3',
                  'pyproj>=2.1',
-                 'torch==1.3.1',
+                 'torch>=1.3.1',
                  'pyyaml==5.2',
                  'rasterio>=1.0.23',
                  'requests>=2.22.0',
