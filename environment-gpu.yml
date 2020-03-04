@@ -30,4 +30,4 @@ dependencies:
   - tqdm>=4.40.0
   - urllib3>=1.25.7
   - tensorflow-gpu=1.13.1
-  - cuda92
+  - cuda100
